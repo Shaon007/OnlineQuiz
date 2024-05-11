@@ -1,22 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz App</title>
+    <title>Quiz App - Home</title>
     <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
-<div class="app">
-  <h1>Simple Quiz</h1>
-  <div class="quiz"></div>
-    <h2 id="question">Question goes here</h2>
-    <div id="answer-buttons">
-      <button class="btn">Answer 1</button>
-      <button class="btn">Answer 2</button>
-      <button class="btn">Answer 3</button>
-      <button class="btn">Answer 4</button>
+<div class="container">
+  <div id="firstPage" class="page">
+    <h1>Welcome to the Quiz App</h1>
+    <div class="categories">
+      <h2>Select a Category:</h2>
+      <button class="category-btn" onclick="startQuiz('category1')">Category 1</button>
+      <button class="category-btn" onclick="startQuiz('category2')">Category 2</button>
+      <button class="category-btn" onclick="startQuiz('category3')">Category 3</button>
     </div>
-    <button id="next-btn">Next</button>
+  </div>
+
+  <div id="secondPage" class="page" style="display: none;">
+    <h1>Simple Quiz</h1>
+    <div class="quiz">
+      <div class="question" id="question1">
+        <h2>What is the capital of France?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Paris</div>
+          <div class="option" onclick="checkAnswer('option2')">Berlin</div>
+          <div class="option" onclick="checkAnswer('option3')">London</div>
+          <div class="option" onclick="checkAnswer('option4')">Madrid</div>
+        </div>
+      </div>
+      <div class="question" id="question2" style="display: none;">
+        <h2>What is the largest planet in our solar system?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Mercury</div>
+          <div class="option" onclick="checkAnswer('option2')">Venus</div>
+          <div class="option" onclick="checkAnswer('option3')">Earth</div>
+          <div class="option" onclick="checkAnswer('option4')">Jupiter</div>
+        </div>
+      </div>
+      <!-- Add more questions here -->
+      <div class="question" id="question3" style="display: none;">
+        <h2>What is the capital of Japan?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Tokyo</div>
+          <div class="option" onclick="checkAnswer('option2')">Seoul</div>
+          <div class="option" onclick="checkAnswer('option3')">Beijing</div>
+          <div class="option" onclick="checkAnswer('option4')">Bangkok</div>
+        </div>
+      </div>
+      <div class="question" id="question4" style="display: none;">
+        <h2>What is the chemical symbol for water?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">H2O</div>
+          <div class="option" onclick="checkAnswer('option2')">CO2</div>
+          <div class="option" onclick="checkAnswer('option3')">O2</div>
+          <div class="option" onclick="checkAnswer('option4')">NaCl</div>
+        </div>
+      </div>
+      <div class="question" id="question5" style="display: none;">
+        <h2>Which planet is known as the Red Planet?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Mars</div>
+          <div class="option" onclick="checkAnswer('option2')">Jupiter</div>
+          <div class="option" onclick="checkAnswer('option3')">Saturn</div>
+          <div class="option" onclick="checkAnswer('option4')">Uranus</div>
+        </div>
+      </div>
+      <div class="question" id="question6" style="display: none;">
+        <h2>What is the largest mammal?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Elephant</div>
+          <div class="option" onclick="checkAnswer('option2')">Blue Whale</div>
+          <div class="option" onclick="checkAnswer('option3')">Giraffe</div>
+          <div class="option" onclick="checkAnswer('option4')">Tiger</div>
+        </div>
+      </div>
+      <div class="question" id="question7" style="display: none;">
+        <h2>What is the currency of India?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Rupee</div>
+          <div class="option" onclick="checkAnswer('option2')">Dollar</div>
+          <div class="option" onclick="checkAnswer('option3')">Yen</div>
+          <div class="option" onclick="checkAnswer('option4')">Euro</div>
+        </div>
+      </div>
+      <div class="question" id="question8" style="display: none;">
+        <h2>What is the tallest mountain in the world?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Mount Everest</div>
+          <div class="option" onclick="checkAnswer('option2')">K2</div>
+          <div class="option" onclick="checkAnswer('option3')">Kangchenjunga</div>
+          <div class="option" onclick="checkAnswer('option4')">Lhotse</div>
+        </div>
+      </div>
+      <div class="question" id="question9" style="display: none;">
+        <h2>What is the largest ocean in the world?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Pacific Ocean</div>
+          <div class="option" onclick="checkAnswer('option2')">Atlantic Ocean</div>
+          <div class="option" onclick="checkAnswer('option3')">Indian Ocean</div>
+          <div class="option" onclick="checkAnswer('option4')">Arctic Ocean</div>
+        </div>
+      </div>
+      <div class="question" id="question10" style="display: none;">
+        <h2>Which gas is most abundant in the Earth's atmosphere?</h2>
+        <div class="answer-buttons">
+          <div class="option" onclick="checkAnswer('option1')">Nitrogen</div>
+          <div class="option" onclick="checkAnswer('option2')">Oxygen</div>
+          <div class="option" onclick="checkAnswer('option3')">Carbon Dioxide</div>
+          <div class="option" onclick="checkAnswer('option4')">Argon</div>
+        </div>
+      </div>
+    </div>
+    <button id="next-btn" onclick="nextQuestion()">Next</button>
+    <button id="back-btn" onclick="goBack()">Back</button>
   </div>
 </div>
+
+<script>
+  var currentQuestion = 1;
+  var totalQuestions = 10; // Change this value according to the total number of questions
+  
+  function startQuiz(category) {
+    // Reset currentQuestion index when starting the quiz
+    currentQuestion = 1;
+
+    // Hide the first page and show the second page
+    document.getElementById("firstPage").style.display = "none";
+    document.getElementById("secondPage").style.display = "block";
+    
+    // Here, you can fetch questions based on the selected category and populate the quiz section dynamically.
+  }
+
+  function goBack() {
+    // Reset currentQuestion index when going back to the category selection page
+    currentQuestion = 1;
+
+    // Hide the second page and show the first page
+    document.getElementById("secondPage").style.display = "none";
+    document.getElementById("firstPage").style.display = "block";
+  }
+
+  function checkAnswer(option) {
+    // Example function to check the selected answer
+    if (option === 'option1') {
+      alert('Correct!');
+    } else {
+      alert('Incorrect!');
+    }
+    
+    // Check if it's the last question
+    if (currentQuestion === totalQuestions) {
+      document.getElementById("next-btn").style.display = "none";
+    } else {
+      nextQuestion();
+    }
+  }
+
+  function nextQuestion() {
+    // Hide the current question
+    document.getElementById("question" + currentQuestion).style.display = "none";
+    
+    // Show the next question
+    currentQuestion++;
+    var nextQuestionElement = document.getElementById("question" + currentQuestion);
+    if (nextQuestionElement) {
+      nextQuestionElement.style.display = "block";
+    }
+  }
+</script>
+
 </body>
 </html>
